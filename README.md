@@ -60,7 +60,7 @@ mutation { # create new user
 ```js
 query { # get users
   getUsers(skip: 0, limit: 5) {
-		id
+    id
     name
   }
 }
