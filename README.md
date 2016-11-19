@@ -1,15 +1,15 @@
 # graphql-example
 
-> A GraphQL project
+> A GraphQL application example (intuitive rootValue resolvers using Contextable.js)
 
 ## Features
 
-> Requires Node.js v7+
+> This example uses Node.js v7 and MongoDB.
 
 * Print GraphQL schema from command-line.
 * Execute GraphQL schema from command-line.
 * Graphql HTTP server.
-* Data management, validation and error handling with [contextable.js](https://github.com/xpepermint/contextablejs).
+* GraphQL rootValue using [contextable.js](https://github.com/xpepermint/contextablejs) - data management, validation and error handling with .
 * MongoDB connector.
 
 ## Build Setup
@@ -21,12 +21,18 @@ npm install
 # switch environment to production
 npm config set graphql-example:env production
 
-# start the server
+# transpile source code
+npm run build
+
+# start the server (GraphiQL is started at http://127.0.0.1:4444)
 npm start
 
 # use nodemon in development to automatically reload the server on changes
 npm install -g nodemon
 nodemon --exec npm start
+
+# run GraphQL query
+npm run exec '{getUsersById(ids: ["2f4efaf63a8c6310397667"]) {id name}}'
 ```
 
 ## Tutorials

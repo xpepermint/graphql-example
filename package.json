@@ -1,7 +1,7 @@
 {
   "name": "graphql-example",
-  "version": "1.0.0",
-  "description": "A GraphQL project",
+  "version": "1.0.1",
+  "description": "A GraphQL application example (intuitive rootValue resolvers using Contextable.js)",
   "main": "./dist/index.js",
   "config": {
     "env": "development",
