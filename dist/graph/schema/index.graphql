@@ -1,0 +1,23 @@
+type Error {
+  name: String!
+  message: String!
+  code: Int!
+}
+
+type User {
+  id: ID!
+  name: String!
+}
+
+type Query {
+  getUsersById(ids: [ID]): [User]
+}
+
+type Mutation {
+  createUser(name: String): User
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}
