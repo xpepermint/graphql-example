@@ -34,8 +34,10 @@ export const fields = {
 
 export const instanceVirtuals = {
   id: {
-    get () { return this._id },
-    set (s) { this._id = s }
+    get () { return this._id }
+  },
+  errors: {
+    get () { return this.collectErrors() }
   }
 };
 

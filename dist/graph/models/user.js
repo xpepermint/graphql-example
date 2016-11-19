@@ -44,9 +44,11 @@ const instanceVirtuals = exports.instanceVirtuals = {
   id: {
     get() {
       return this._id;
-    },
-    set(s) {
-      this._id = s;
+    }
+  },
+  errors: {
+    get() {
+      return this.collectErrors();
     }
   }
 };

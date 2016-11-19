@@ -1,12 +1,18 @@
+type ValidationError {
+  validator: String
+  message: String
+  code: Int
+}
+
 type Error {
-  name: String!
-  message: String!
-  code: Int!
+  path: [String]
+  errors: [ValidationError]
 }
 
 type User {
-  id: ID!
-  name: String!
+  id: ID
+  name: String
+  errors: [Error]
 }
 
 type Query {

@@ -23,7 +23,8 @@ export const instanceMethods = {
   async createUser (data) {
     let {User} = this.$context;
     let user = new User(data);
-    return await user.save() ? user : null;
+    await user.save();
+    return user;
   }
 
 };

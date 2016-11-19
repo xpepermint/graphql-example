@@ -34,20 +34,66 @@ test('query `getUser` should return a paginated list of users', async (t) => {
 
   let query = `
     query ($skip: Int, $limit: Int) {
-      users: getUsers(skip: $skip, limit: $limit) { id name }
+      users: getUsers(skip: $skip, limit: $limit) {
+        id
+        name
+      }
     }
   `;
-  let vars = {
+  let res = await graph.exec({query, vars: {
     skip: 1,
     limit: 1
-  };
-  let res = await graph.exec({query, vars});
+  }});
 
   t.deepEqual(res, {
     data: {
       users: [
-        {id: '582f4d220260a6625228564f', name: 'Bar'}
+        {
+          id: '582f4d220260a6625228564f',
+          name: 'Bar'
+        }
       ]
+    }
+  });
+});
+
+test('mutation `createUser` should validate model and create a new user', async (t) => {
+  await graph.mongo.collection('users').remove({});
+
+  let query = `
+    mutation ($name: String) {
+    	user: createUser(name: $name) {
+    		id
+        errors {
+          path
+          errors {
+          	validator
+          	message
+          	code
+          }
+        }
+      }
+    }
+  `;
+  let res = await graph.exec({query});
+
+  t.deepEqual(res, {
+    data: {
+      user: {
+        id: null,
+        errors: [
+          {
+            path: ['name'],
+            errors: [
+              {
+                validator: 'presence',
+                message: 'is required',
+                code: 422
+              }
+            ]
+          }
+        ]
+      }
     }
   });
 });
@@ -56,19 +102,27 @@ test('mutation `createUser` should create a new user', async (t) => {
   await graph.mongo.collection('users').remove({});
 
   let query = `
-    mutation ($name: String) { # create new user
-    	user: createUser(name: $name) { id name }
+    mutation ($name: String) {
+    	user: createUser(name: $name) {
+    		id
+        name
+        errors {
+          path
+        }
+      }
     }
   `;
-  let vars = {
+  let res = await graph.exec({query, vars: {
     name: 'Foo'
-  };
-  let res = await graph.exec({query, vars});
+  }});
 
-  t.is(!!res.data.user.id, true);
   t.deepEqual(res, {
     data: {
-      user: {id: res.data.user.id, name: 'Foo'}
+      user: {
+        id: res.data.user.id,
+        name: 'Foo',
+        errors: []
+      }
     }
   });
 });
