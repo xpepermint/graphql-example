@@ -42,9 +42,17 @@ npm test
 
 ```js
 mutation { # create new user
-  createUser(name: "John") {
+  createUser(name: "") {
     id
     name
+    errors {
+      path
+      errors {
+      	validator
+      	message
+      	code
+      }
+    }
   }
 }
 ```
