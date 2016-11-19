@@ -1,14 +1,17 @@
 # graphql-example
 
-> A GraphQL application example (intuitive rootValue resolvers using Contextable.js)
+> Intuitive GraphQL Resolver Example - Application example using contextable.js as GraphQL rootValue on steroids.
 
 ## Features
 
 > This example uses Node.js v7 and MongoDB.
 
-* GraphQL rootValue using [contextable.js](https://github.com/xpepermint/contextablejs) - data management, validation and error handling with .
+* GraphQL rootValue using [contextable.js](https://github.com/xpepermint/contextablejs).
+* Nested schema.
 * Print GraphQL schema from command-line.
 * Execute GraphQL schema from command-line.
+* Input data validation.
+* Context-aware models.
 * Graphql HTTP server.
 * MongoDB connector.
 
@@ -39,8 +42,8 @@ npm test
 
 ```js
 mutation { # create new user
-	createUser(name: "John") {
-		id
+  createUser(name: "John") {
+    id
     name
   }
 }
@@ -49,7 +52,7 @@ mutation { # create new user
 ```js
 query { # get users
   getUsers(skip: 0, limit: 5) {
-    id
+		id
     name
   }
 }

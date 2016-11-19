@@ -16,8 +16,3 @@ type Query {
 type Mutation {
   createUser(name: String): User
 }
-
-schema {
-  query: Query
-  mutation: Mutation
-}
