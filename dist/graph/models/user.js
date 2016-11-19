@@ -16,7 +16,7 @@ var _contextable = require('contextable');
 const typeOptions = exports.typeOptions = {
   ObjectId(value) {
     return new _mongodb.ObjectId(value);
-  }
+  } // we use mongodb
 };
 
 /*
@@ -44,6 +44,9 @@ const instanceVirtuals = exports.instanceVirtuals = {
   id: {
     get() {
       return this._id;
+    },
+    set(s) {
+      this._id = s;
     }
   }
 };
@@ -53,6 +56,11 @@ const instanceVirtuals = exports.instanceVirtuals = {
 */
 
 const instanceMethods = exports.instanceMethods = {
+
+  /*
+  * Create new or updates existing user in a database.
+  */
+
   async save() {
     let collection = this.$context.mongo.collection('users');
 
@@ -76,12 +84,18 @@ const instanceMethods = exports.instanceMethods = {
 */
 
 const classMethods = exports.classMethods = {
-  async findByIds(ids = []) {
+
+  /*
+  * Returns a list of users.
+  */
+
+  async findAll({ skip = 0, limit = 100 } = {}) {
     let collection = this.$context.mongo.collection('users');
 
-    return await collection.find({
-      _id: { $in: ids.map(i => (0, _mongodb.ObjectId)(i)) }
-    }).toArray();
+    if (skip < 0) skip = 0;
+    if (limit > 100) limit = 100;
+
+    return await collection.find().limit(limit).skip(skip).toArray();
   }
 };
 

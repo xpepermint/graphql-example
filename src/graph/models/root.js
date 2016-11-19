@@ -10,9 +10,9 @@ export const instanceMethods = {
   * Returns users for the provided `ids`.
   */
 
-  async getUsersById ({ids}) {
+  async getUsers (args) {
     let {User} = this.$context;
-    let data = await User.findByIds(ids);
+    let data = await User.findAll(args);
     return data.map((d) => new User(d));
   },
 

@@ -6,7 +6,7 @@ import {Schema} from 'contextable';
 */
 
 export const typeOptions = {
-  ObjectId (value) { return new ObjectId(value) }
+  ObjectId (value) { return new ObjectId(value) } // we use mongodb
 };
 
 /*
@@ -34,7 +34,8 @@ export const fields = {
 
 export const instanceVirtuals = {
   id: {
-    get () { return this._id }
+    get () { return this._id },
+    set (s) { this._id = s }
   }
 };
 
@@ -43,6 +44,11 @@ export const instanceVirtuals = {
 */
 
 export const instanceMethods = {
+
+  /*
+  * Create new or updates existing user in a database.
+  */
+
   async save () {
     let collection = this.$context.mongo.collection('users');
 
@@ -68,12 +74,18 @@ export const instanceMethods = {
 */
 
 export const classMethods = {
-  async findByIds (ids = []) {
+
+  /*
+  * Returns a list of users.
+  */
+
+  async findAll ({skip = 0, limit = 100} = {}) {
     let collection = this.$context.mongo.collection('users');
 
-    return await collection.find({
-      _id: {$in: ids.map(i => ObjectId(i))}
-    }).toArray();
+    if (skip < 0) skip = 0;
+    if (limit > 100) limit = 100;
+
+    return await collection.find().limit(limit).skip(skip).toArray();
   }
 };
 

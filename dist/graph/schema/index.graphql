@@ -10,7 +10,7 @@ type User {
 }
 
 type Query {
-  getUsersById(ids: [ID]): [User]
+  getUsers(skip: Int, limit: Int): [User]
 }
 
 type Mutation {

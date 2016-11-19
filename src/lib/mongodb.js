@@ -1,4 +1,13 @@
-import {MongoClient} from 'mongodb';
+import {
+  MongoClient,
+  ObjectId
+} from 'mongodb';
+
+/*
+* Exposing BSON ObjectId.
+*/
+
+export {ObjectId};
 
 /*
 * Creates a new MongoDB connection.
