@@ -16,7 +16,7 @@
     "exec": "node --harmony ./dist/scripts/graph-exec",
     "print": "node --harmony ./dist/scripts/graph-print",
     "start": "node --harmony ./dist/scripts/graph-start",
-    "test": "node --harmony node_modules/.bin/ava"
+    "test": "npm run compile; node --harmony node_modules/.bin/ava"
   },
   "ava": {
     "files": [
@@ -29,7 +29,7 @@
   "author": "Kristijan Sedlak (Xpepermint)",
   "license": "MIT",
   "dependencies": {
-    "contextable": "2.9.1",
+    "contextable": "2.9.5",
     "express": "4.14.0",
     "express-graphql": "0.6.1",
     "graphql": "0.8.2",
