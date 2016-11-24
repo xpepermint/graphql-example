@@ -29,15 +29,15 @@
   "author": "Kristijan Sedlak (Xpepermint)",
   "license": "MIT",
   "dependencies": {
-    "contextable": "2.9.5",
-    "express": "4.14.0",
-    "express-graphql": "0.6.1",
-    "graphql": "0.8.2",
-    "mongodb": "2.2.11"
+    "contextable": "^2.10.0",
+    "express": "^4.14.0",
+    "express-graphql": "^0.6.1",
+    "graphql": "^0.8.2",
+    "mongodb": "^2.2.11"
   },
   "devDependencies": {
-    "ava": "0.17.0",
-    "babel-cli": "6.18.0",
-    "babel-preset-es2017-node7": "0.4.1"
+    "ava": "^0.17.0",
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2017-node7": "^0.4.1"
   }
 }
