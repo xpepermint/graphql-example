@@ -2,6 +2,9 @@
 
 > Intuitive GraphQL Resolver Example - Application example using contextable.js as GraphQL rootValue on steroids.
 
+This is a pure server application, using [GraphiQL](https://github.com/graphql/graphiql) as a generic interface for GraphQL
+queries and mutations
+
 ## Features
 
 > This example uses Node.js v7 and MongoDB.
@@ -14,6 +17,11 @@
 * Context-aware models.
 * Graphql HTTP server.
 * MongoDB connector.
+
+## Pre-requisites
+
+- Install MongoDB
+- Start mongo, f.ex `$ mongod`
 
 ## Build Setup
 
@@ -37,6 +45,12 @@ npm run exec '{getUsers {id name}}'
 # run tests
 npm test
 ```
+
+## Run
+
+`npm start`
+
+Starts [GraphiQL server](https://medium.com/the-graphqlhub/graphiql-graphql-s-killer-app-9896242b2125#.xt4jo8bet) at `http://127.0.0.1:4444/`
 
 ## Query Examples
 
