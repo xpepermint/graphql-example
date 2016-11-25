@@ -1,6 +1,6 @@
 {
   "name": "graphql-example",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Intuitive GraphQL Resolver Example - Application example using contextable.js as GraphQL rootValue on steroids.",
   "main": "./dist/index.js",
   "config": {
