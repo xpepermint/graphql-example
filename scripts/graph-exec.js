@@ -1,6 +1,6 @@
-import {Graph} from '..';
-import {connectToMongo} from '../lib/mongodb';
-import * as config from '../config';
+const {Graph} = require('..');
+const {connectToMongo} = require('../src/lib/mongodb');
+const config = require('../config');
 
 (async () => {
   let query = process.argv[2];

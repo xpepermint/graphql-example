@@ -1,22 +1,19 @@
 {
   "name": "graphql-example",
-  "version": "1.2.0",
+  "version": "1.4.0",
   "description": "Intuitive GraphQL Resolver Example - Application example using contextable.js as GraphQL rootValue on steroids.",
-  "main": "./dist/index.js",
+  "main": "./src/index.js",
   "config": {
     "env": "development",
     "httpHost": "127.0.0.1",
-    "httpPort": 4444,
+    "httpPort": 3000,
     "mongoUrl": "mongodb://localhost:27017/test"
   },
   "scripts": {
-    "build": "mkdir -p ./dist; babel ./src --out-dir ./dist --copy-files",
-    "clean": "rm -Rf ./dist",
-    "compile": "npm run clean; npm run build",
-    "exec": "node --harmony ./dist/scripts/graph-exec",
-    "print": "node --harmony ./dist/scripts/graph-print",
-    "start": "node --harmony ./dist/scripts/graph-start",
-    "test": "npm run compile; node --harmony node_modules/.bin/ava"
+    "exec": "node --harmony ./scripts/graph-exec",
+    "print": "node --harmony ./scripts/graph-print",
+    "start": "node --harmony ./scripts/graph-start",
+    "test": "node --harmony node_modules/.bin/ava"
   },
   "ava": {
     "files": [
@@ -36,8 +33,6 @@
     "mongodb": "^2.2.11"
   },
   "devDependencies": {
-    "ava": "^0.17.0",
-    "babel-cli": "^6.18.0",
-    "babel-preset-es2017-node7": "^0.4.1"
+    "ava": "^0.17.0"
   }
 }

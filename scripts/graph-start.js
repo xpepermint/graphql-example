@@ -1,6 +1,6 @@
-import {HTTP, Graph} from '..';
-import {connectToMongo} from '../lib/mongodb';
-import * as config from '../config';
+const {HTTP, Graph} = require('..');
+const {connectToMongo} = require('../src/lib/mongodb');
+const config = require('../config');
 
 (async () => {
   let mongo = await connectToMongo(config.mongoUrl);

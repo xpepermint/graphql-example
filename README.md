@@ -28,10 +28,7 @@
 # install dependencies
 npm install
 
-# transpile source code (we use ES6 features)
-npm run build
-
-# start the server (GraphiQL is started at http://127.0.0.1:4444)
+# start the server (GraphiQL is started at http://127.0.0.1:3000)
 npm start
 
 # use nodemon in development to automatically reload the server on changes
@@ -49,7 +46,7 @@ npm test
 
 `npm start`
 
-Starts [GraphiQL server](https://medium.com/the-graphqlhub/graphiql-graphql-s-killer-app-9896242b2125#.xt4jo8bet) at `http://127.0.0.1:4444/`
+Starts [GraphiQL server](https://medium.com/the-graphqlhub/graphiql-graphql-s-killer-app-9896242b2125#.xt4jo8bet) at `http://127.0.0.1:3000/`
 
 ## Query Examples
 
@@ -82,15 +79,14 @@ query { # get users
 ## Architcture
 
 ```
-- /src
-  |- /config    - config files
+|- /config    - config files
+|- /scripts   - scripts that can be executed from CLI (used by `package.json`)
+|- /src
   |- /graph`    - GraphQL application
   |- /http      - HTTP server
   |- /lib       - general helpers (e.g. Mongo DB connector)
-  |- /scripts   - scripts that can be executed from CLI (used by `package.json`)
   |- index.js   - application main file
 - /tests        - tests written in [ava](https://github.com/avajs/ava) framework
-- /dist         - transpiled `src` directory
 ```
 
 The application exports two main classes - `Graph` (GraphQL application - `src/http`) and `HTTP` (HTTP server - `src/graph`). Each class represents a stand-alone application. You could create two separated npm packages from this to further split your code to responsibilities.

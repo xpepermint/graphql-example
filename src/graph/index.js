@@ -1,18 +1,15 @@
-import {
-  graphql,
-  printSchema
-} from 'graphql';
-import {Context} from 'contextable';
-import schema from './schema';
-import rootSchema from './models/root';
-import userSchema from './models/user';
+const {graphql, printSchema} = require('graphql');
+const {Context} = require('contextable');
+const schema = require('./schema');
+const rootSchema = require('./models/root');
+const userSchema = require('./models/user');
 
 /*
 * GraphQL application representing application context for managing application
 * state, for data validation and unified error hendling.
 */
 
-export class Graph extends Context {
+exports.Graph = class Graph extends Context {
 
   /*
   * Class constructor

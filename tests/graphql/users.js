@@ -1,10 +1,7 @@
-import test from 'ava';
-import {Graph} from '../../dist';
-import {
-  connectToMongo,
-  ObjectId
-} from '../../dist/lib/mongodb';
-import * as config from '../../dist/config';
+const test = require('ava');
+const {Graph} = require('../../src');
+const {connectToMongo, ObjectId} = require('../../src/lib/mongodb');
+const config = require('../../config');
 
 /*
 * Initialization and test hooks.

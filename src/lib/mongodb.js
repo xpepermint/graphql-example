@@ -1,18 +1,15 @@
-import {
-  MongoClient,
-  ObjectId
-} from 'mongodb';
+const {MongoClient, ObjectId} = require('mongodb');
 
 /*
 * Exposing BSON ObjectId.
 */
 
-export {ObjectId};
+exports.ObjectId = ObjectId;
 
 /*
 * Creates a new MongoDB connection.
 */
 
-export function connectToMongo (url) {
+exports.connectToMongo = function (url) {
   return MongoClient.connect(url);
 }

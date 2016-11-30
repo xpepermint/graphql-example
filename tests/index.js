@@ -1,5 +1,5 @@
-import test from 'ava';
-import * as graph from '../dist';
+const test = require('ava');
+const graph = require('../src');
 
 test('exposed content', async (t) => {
   t.is(!!graph.Graph, true);

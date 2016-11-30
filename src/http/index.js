@@ -1,11 +1,11 @@
-import express from 'express';
-import {graphServer} from './middlewares/graph';
+const express = require('express');
+const {graphServer} = require('./middlewares/graph');
 
 /*
 * HTTP server class.
 */
 
-export class HTTP {
+exports.HTTP = class HTTP {
 
   /*
   * Class constructor.

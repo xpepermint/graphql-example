@@ -1,4 +1,7 @@
-import {Graph} from './graph';
-import {HTTP} from './http';
+const {Graph} = require('./graph');
+const {HTTP} = require('./http');
 
-export {Graph, HTTP};
+module.exports = {
+  Graph,
+  HTTP
+};

@@ -1,11 +1,11 @@
-import fs from 'fs';
-import path from 'path';
-import {buildSchema} from 'graphql';
+const fs = require('fs');
+const {join} = require('path');
+const {buildSchema} = require('graphql');
 
 /*
 * Public GraphQL schema.
 */
 
-export default buildSchema(
-  fs.readFileSync(path.join(__dirname, 'index.graphql'), 'utf-8')
+module.exports = buildSchema(
+  fs.readFileSync(join(__dirname, 'index.graphql'), 'utf-8')
 );

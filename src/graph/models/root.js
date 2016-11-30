@@ -1,38 +1,37 @@
-import {Schema} from 'contextable';
+const {Schema} = require('contextable');
 
 /*
-* Instance methods.
+* Root GraphQL resolver.
 */
 
-export const instanceMethods = {
+module.exports = new Schema({
 
   /*
-  * Returns users for the provided `ids`.
+  * Instance methods.
   */
 
-  async getUsers (args) {
-    let {User} = this.$context;
-    let data = await User.findAll(args);
-    return data.map((d) => new User(d));
-  },
+  instanceMethods: {
 
-  /*
-  * Creates a new user.
-  */
+    /*
+    * Returns users for the provided `ids`.
+    */
 
-  async createUser (data) {
-    let {User} = this.$context;
-    let user = new User(data);
-    await user.save();
-    return user;
+    async getUsers (args) {
+      let {User} = this.$context;
+      let data = await User.findAll(args);
+      return data.map((d) => new User(d));
+    },
+
+    /*
+    * Creates a new user.
+    */
+
+    async createUser (data) {
+      let {User} = this.$context;
+      let user = new User(data);
+      await user.save();
+      return user;
+    }
+
   }
-
-};
-
-/*
-* Root model schema.
-*/
-
-export default new Schema({
-  instanceMethods
 });

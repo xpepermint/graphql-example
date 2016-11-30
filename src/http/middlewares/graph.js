@@ -1,11 +1,11 @@
-import graphqlHTTP from 'express-graphql';
-import {Graph} from '../../graph';
+const graphqlHTTP = require('express-graphql');
+const {Graph} = require('../../graph');
 
 /*
 * Returns a GraphQL middleware.
 */
 
-export function graphServer ({graph}) {
+exports.graphServer = function ({graph}) {
   return graphqlHTTP((req) => ({
     schema: graph.schema,
     rootValue: new graph.Root(),

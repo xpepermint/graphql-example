@@ -1,104 +1,101 @@
-import {ObjectId} from 'mongodb';
-import {Schema} from 'contextable';
+const {ObjectId} = require('mongodb');
+const {Schema} = require('contextable');
 
 /*
-* Custom data types definition.
+* User model schema.
 */
 
-export const typeOptions = {
-  ObjectId (value) { return new ObjectId(value) } // we use mongodb
-};
-
-/*
-* Model fields.
-*/
-
-export const fields = {
-  _id: {
-    type: 'ObjectId'
-  },
-  name: {
-    type: 'String',
-    validate: [
-      {
-        validator: 'presence',
-        message: 'is required'
-      }
-    ]
-  }
-};
-
-/*
-* Virtual instance variables.
-*/
-
-export const instanceVirtuals = {
-  id: {
-    get () { return this._id }
-  },
-  errors: {
-    get () { return this.collectErrors() }
-  }
-};
-
-/*
-* Instance methods.
-*/
-
-export const instanceMethods = {
+module.exports = new Schema({
 
   /*
-  * Create new or updates existing user in a database.
+  * Custom data types.
   */
 
-  async save () {
-    let collection = this.$context.mongo.collection('users');
-
-    try {
-      await this.validate();
-      if (this._id) {
-        await collection.updateOne({_id: this._id}, this, {upsert: true});
-      }
-      else {
-        await collection.insertOne(this);
-      }
-      return true;
-    }
-    catch (e) {
-      await this.handle(e);
-      return false;
-    }
-  }
-};
-
-/*
-* Class methods.
-*/
-
-export const classMethods = {
+  typeOptions: {
+    ObjectId (value) { return new ObjectId(value) } // we use mongodb
+  },
 
   /*
-  * Returns a list of users.
+  * Model fields.
   */
 
-  async findAll ({skip = 0, limit = 100} = {}) {
-    let collection = this.$context.mongo.collection('users');
+  fields: {
+    _id: {
+      type: 'ObjectId'
+    },
+    name: {
+      type: 'String',
+      validate: [
+        {
+          validator: 'presence',
+          message: 'is required'
+        }
+      ]
+    }
+  },
 
-    if (skip < 0) skip = 0;
-    if (limit > 100) limit = 100;
+  /*
+  * Virtual instance variables.
+  */
 
-    return await collection.find().limit(limit).skip(skip).toArray();
+  instanceVirtuals: {
+    id: {
+      get () { return this._id }
+    },
+    errors: {
+      get () { return this.collectErrors() }
+    }
+  },
+
+  /*
+  * Instance methods.
+  */
+
+  instanceMethods: {
+
+    /*
+    * Create new or updates existing user in a database.
+    */
+
+    async save () {
+      let collection = this.$context.mongo.collection('users');
+
+      try {
+        await this.validate();
+        if (this._id) {
+          await collection.updateOne({_id: this._id}, this, {upsert: true});
+        }
+        else {
+          await collection.insertOne(this);
+        }
+        return true;
+      }
+      catch (e) {
+        await this.handle(e);
+        return false;
+      }
+    }
+
+  },
+
+  /*
+  * Class methods.
+  */
+
+  classMethods: {
+
+    /*
+    * Returns a list of users.
+    */
+
+    async findAll ({skip = 0, limit = 100} = {}) {
+      let collection = this.$context.mongo.collection('users');
+
+      if (skip < 0) skip = 0;
+      if (limit > 100) limit = 100;
+
+      return await collection.find().limit(limit).skip(skip).toArray();
+    }
+
   }
-};
-
-/*
-* Model schema.
-*/
-
-export default new Schema({
-  typeOptions,
-  fields,
-  instanceVirtuals,
-  instanceMethods,
-  classMethods
 });
