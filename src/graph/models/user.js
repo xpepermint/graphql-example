@@ -11,7 +11,7 @@ module.exports = new Schema({
   * Custom data types.
   */
 
-  typeOptions: {
+  types: {
     ObjectId (value) { return new ObjectId(value) } // we use mongodb
   },
 
