@@ -5,11 +5,11 @@ const {Graph} = require('../../graph');
 * Returns a GraphQL middleware.
 */
 
-exports.graphServer = function ({graph}) {
+exports.graphServer = function ({graph, config}) {
   return graphqlHTTP((req) => ({
     schema: graph.schema,
-    rootValue: new graph.Root(),
+    rootValue: graph.rootValue,
     context: req,
-    graphiql: graph.config.env === 'development'
+    graphiql: config.env === 'development'
   }));
 }

@@ -7,23 +7,25 @@ const config = require('../../config');
 * Initialization and test hooks.
 */
 
-const graph = new Graph(config);
-
-test.before(async (t) => {
-  graph.mongo = await connectToMongo(`${config.mongoUrl}`);
+test.beforeEach(async (t) => {
+  t.context.graph = new Graph({
+    config,
+    mongo: await connectToMongo(`${config.mongoUrl}`)
+  });
 });
 
-test.after(async (t) => {
-  graph.mongo.close();
+test.afterEach(async (t) => {
+  t.context.graph.rootValue.mongo.close();
 });
 
 /*
 * Graph tests.
 */
 
-test('query `getUser` should return a paginated list of users', async (t) => {
-  await graph.mongo.collection('users').remove({});
-  await graph.mongo.collection('users').insert([
+test('query `getUsers` should return a paginated list of users', async (t) => {
+  let {graph} = t.context;
+  await graph.rootValue.mongo.collection('users').remove({});
+  await graph.rootValue.mongo.collection('users').insert([
     {_id: new ObjectId('582f4c7e2d25676224e08f9c'), name: 'Foo'},
     {_id: new ObjectId('582f4d220260a6625228564f'), name: 'Bar'},
     {_id: new ObjectId('582f4d5da7489e626d5db9c6'), name: 'Baz'},
@@ -55,7 +57,8 @@ test('query `getUser` should return a paginated list of users', async (t) => {
 });
 
 test('mutation `createUser` should validate model and create a new user', async (t) => {
-  await graph.mongo.collection('users').remove({});
+  let {graph} = t.context;
+  await graph.rootValue.mongo.collection('users').remove({});
 
   let query = `
     mutation ($name: String) {
@@ -96,7 +99,8 @@ test('mutation `createUser` should validate model and create a new user', async 
 });
 
 test('mutation `createUser` should create a new user', async (t) => {
-  await graph.mongo.collection('users').remove({});
+  let {graph} = t.context;
+  await graph.rootValue.mongo.collection('users').remove({});
 
   let query = `
     mutation ($name: String) {

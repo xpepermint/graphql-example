@@ -8,7 +8,7 @@
 
 > This example uses Node.js v7 and MongoDB.
 
-* GraphQL rootValue using [contextable.js](https://github.com/xpepermint/contextablejs).
+* GraphQL rootValue using [RawModel.js](https://github.com/xpepermint/rawmodeljs).
 * Nested schema.
 * Print GraphQL schema from command-line.
 * Execute GraphQL schema from command-line.
@@ -97,7 +97,7 @@ Graph application describes your data model and provides a communication layer. 
 
 The HTTP server is based on [express-graphql](https://github.com/graphql/express-graphql) which is a bridge to communicate with a GraphQL application via [Express](http://expressjs.com/) HTTP server. You could substitute this with [koa-graphql](https://github.com/chentsulin/koa-graphql) or [koa-graphql-next](https://github.com/bidanjun/koa-graphql-next). The `express-graphql` middleware includes a [GraphiQL](https://github.com/graphql/graphiql) user interface which is a generic interface for running GraphQL queries and mutations (for use in development).
 
-The Graph application exposes the API over the GraphQL schema defined in `./src/graph/schema/index.graphql`. It uses the  [contextable.js](https://github.com/xpepermint/contextablejs#graphql-root-resolver) for describing and validating input data. To keep the example simple, we only have two models here where the `Root` model represents a GraphQL resolver - a [root value](http://graphql.org/code/) for the GraphQL.
+Graph application exposes the API over the GraphQL schema defined in `./src/graph/schema/index.graphql`. It uses the  [RawModel.js](https://github.com/xpepermint/rawmodeljs#context--graphql) for describing and validating input data. To keep the example simple, we only have two models here where the `Root` model represents a GraphQL resolver - the [rootValue](http://graphql.org/code/) for GraphQL.
 
 ## GraphQL Clients
 

@@ -1,30 +1,21 @@
 const {graphql, printSchema} = require('graphql');
-const {Context} = require('contextable');
 const schema = require('./schema');
-const rootSchema = require('./models/root');
-const userSchema = require('./models/user');
+const Root = require('./models/root');
 
 /*
 * GraphQL application representing application context for managing application
 * state, for data validation and unified error hendling.
 */
 
-exports.Graph = class Graph extends Context {
+exports.Graph = class Graph {
 
   /*
   * Class constructor
   */
 
-  constructor ({config, mongo} = {}) {
-    super();
-
-    this.config = config; // application configuration
-    this.mongo = mongo; // mongodb instance
-    this.defineModel('Root', rootSchema); // rootValue model
-    this.defineModel('User', userSchema); // user model
-
+  constructor (...args) {
     this.schema = schema; // GraphQL schema
-    this.rootValue = new this.Root(); // GraphQL rootValue
+    this.rootValue = new Root(...args); // GraphQL rootValue
   }
 
   /*

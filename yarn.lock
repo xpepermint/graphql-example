@@ -771,7 +771,7 @@ babel-register@^6.18.0:
     mkdirp "^0.5.1"
     source-map-support "^0.4.2"
 
-babel-runtime@6.18.x, babel-runtime@^6.0.0, babel-runtime@^6.11.6, babel-runtime@^6.9.0, babel-runtime@^6.9.1:
+babel-runtime@^6.0.0, babel-runtime@^6.11.6, babel-runtime@^6.9.0, babel-runtime@^6.9.1:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.18.0.tgz#0f4177ffd98492ef13b9f823e9994a02584c9078"
   dependencies:
@@ -1055,15 +1055,6 @@ content-disposition@0.5.1:
 content-type@^1.0.0, content-type@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/content-type/-/content-type-1.0.2.tgz#b7d113aee7a8dd27bd21133c4dc2529df1721eed"
-
-contextable@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/contextable/-/contextable-3.0.0.tgz#5ad2e26149cde9a6e14505cea937229be4274e0d"
-  dependencies:
-    babel-runtime "6.18.x"
-    handleable "0.16.x"
-    objectschema "3.7.x"
-    typeable "0.20.x"
 
 convert-source-map@^1.1.0, convert-source-map@^1.2.0:
   version "1.3.0"
@@ -1543,11 +1534,11 @@ graphql@^0.8.2:
   dependencies:
     iterall "1.0.2"
 
-handleable@0.16.x:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/handleable/-/handleable-0.16.0.tgz#9f8043c0cf1c719477dead1dd260e60c598616c5"
+handleable@^0.19.0:
+  version "0.19.2"
+  resolved "https://registry.yarnpkg.com/handleable/-/handleable-0.19.2.tgz#7afc8703492826a0920ab29c9a7d5e47fb284a26"
   dependencies:
-    babel-runtime "6.18.x"
+    lodash.merge "4.6.0"
 
 har-validator@~2.0.6:
   version "2.0.6"
@@ -1918,11 +1909,11 @@ lodash.flatten@^4.2.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.flatten/-/lodash.flatten-4.4.0.tgz#f31c22225a9632d2bbf8e4addbef240aa765a61f"
 
-lodash.isequal@4.4.x, lodash.isequal@^4.4.0:
+lodash.isequal@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.4.0.tgz#6295768e98e14dc15ce8d362ef6340db82852031"
 
-lodash.merge@4.6.x:
+lodash.merge@4.6.0, lodash.merge@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.0.tgz#69884ba144ac33fe699737a6086deffadd0f89c5"
 
@@ -2161,16 +2152,6 @@ object.omit@^2.0.0:
   dependencies:
     for-own "^0.1.4"
     is-extendable "^0.1.1"
-
-objectschema@3.7.x:
-  version "3.7.2"
-  resolved "https://registry.yarnpkg.com/objectschema/-/objectschema-3.7.2.tgz#87b801093d2a7c84a7ea962f0028d645b39cefab"
-  dependencies:
-    babel-runtime "6.18.x"
-    lodash.isequal "4.4.x"
-    lodash.merge "4.6.x"
-    typeable "0.20.x"
-    validatable "0.20.x"
 
 observable-to-promise@^0.4.0:
   version "0.4.0"
@@ -2453,6 +2434,16 @@ raw-body@^2.1.0:
     bytes "2.4.0"
     iconv-lite "0.4.13"
     unpipe "1.0.0"
+
+rawmodel@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/rawmodel/-/rawmodel-1.2.0.tgz#5b13be052e9e441d86241bf246b42d38ce9005e0"
+  dependencies:
+    handleable "^0.19.0"
+    lodash.isequal "^4.4.0"
+    lodash.merge "^4.6.0"
+    typeable "^2.0.0"
+    validatable "^0.24.0"
 
 rc@^1.0.1, rc@^1.1.6, rc@~1.1.6:
   version "1.1.6"
@@ -2914,9 +2905,9 @@ type-name@^2.0.1:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/type-name/-/type-name-2.0.2.tgz#efe7d4123d8ac52afff7f40c7e4dec5266008fb4"
 
-typeable@0.20.x:
-  version "0.20.0"
-  resolved "https://registry.yarnpkg.com/typeable/-/typeable-0.20.0.tgz#f979c91207b7b4921377b605ee21e9847672d6e0"
+typeable@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/typeable/-/typeable-2.0.1.tgz#725ea716d37ba0472cb967c0c66c48b3249f88eb"
 
 uid-number@~0.0.6:
   version "0.0.6"
@@ -2977,12 +2968,12 @@ uuid@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.0.0.tgz#6728fc0459c450d796a99c31837569bdf672d728"
 
-validatable@0.20.x:
-  version "0.20.1"
-  resolved "https://registry.yarnpkg.com/validatable/-/validatable-0.20.1.tgz#990f6361781f0f069374e3b55bf6c2753d64f875"
+validatable@^0.24.0:
+  version "0.24.1"
+  resolved "https://registry.yarnpkg.com/validatable/-/validatable-0.24.1.tgz#9b71c46b5fb633e8235cf5ea6bb69070d1fdd14e"
   dependencies:
-    babel-runtime "6.18.x"
-    typeable "0.20.x"
+    lodash.merge "^4.6.0"
+    typeable "^2.0.0"
 
 validate-npm-package-license@^3.0.1:
   version "3.0.1"

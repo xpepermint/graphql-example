@@ -1,37 +1,42 @@
-const {Schema} = require('contextable');
+const {Model} = require('rawmodel');
+const User = require('./user');
 
 /*
 * Root GraphQL resolver.
 */
 
-module.exports = new Schema({
+module.exports = class Root extends Model {
 
   /*
-  * Instance methods.
+  * Model constructor.
   */
 
-  instanceMethods: {
+  constructor ({config, mongo}) {
+    super();
 
-    /*
-    * Returns users for the provided `ids`.
-    */
+    this.config = config; // application configuration
+    this.mongo = mongo; // mongodb instance
 
-    async getUsers (args) {
-      let {User} = this.$context;
-      let data = await User.findAll(args);
-      return data.map((d) => new User(d));
-    },
-
-    /*
-    * Creates a new user.
-    */
-
-    async createUser (data) {
-      let {User} = this.$context;
-      let user = new User(data);
-      await user.save();
-      return user;
-    }
-
+    this.defineModel(null, User); // defining context-aware model
   }
-});
+
+  /*
+  * Returns users for the provided `ids`.
+  */
+
+  async getUsers (args) {
+    let data = await this.User.findAll(args);
+    return data.map((d) => new this.User(d));
+  }
+
+  /*
+  * Creates a new user.
+  */
+
+  async createUser (data) {
+    let user = new this.User(data);
+    await user.save();
+    return user;
+  }
+
+};
