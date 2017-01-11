@@ -1,6 +1,6 @@
 # graphql-example
 
-> Intuitive GraphQL Resolver Example - Application example using contextable.js as GraphQL rootValue on steroids.
+> Intuitive GraphQL Resolver Example - Application example using RawModel.js as GraphQL rootValue on steroids.
 
 `GraphQL` is a modern replacement for the well known REST API server. This is a pure GraphQL server application - an example API server.
 
