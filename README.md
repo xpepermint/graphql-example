@@ -76,7 +76,7 @@ query { # get users
 }
 ```
 
-## Architcture
+## Architecture
 
 ```
 |- /config    - config files
